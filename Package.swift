@@ -5,13 +5,13 @@ import PackageDescription
 let package = Package(
     name: "BitriseSwift",
     products: [
-        .library(name: "BitriseSwift", targets: ["API"])
+        .library(name: "BitriseSwift", targets: ["BitriseSwift"])
     ],
     dependencies: [
         .package(url: "https://github.com/Alamofire/Alamofire.git", .exact("4.8.2")),
     ],
     targets: [
-        .target(name: "API", dependencies: [
+        .target(name: "BitriseSwift", dependencies: [
           "Alamofire",
         ], path: "Sources")
     ]

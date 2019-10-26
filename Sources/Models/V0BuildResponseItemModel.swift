@@ -25,7 +25,7 @@ public class V0BuildResponseItemModel: APIModel {
 
     public var isOnHold: Bool?
 
-    public var originalBuildParams: String?
+    public var originalBuildParams: [String : Any]?
 
     public var pullRequestId: Int?
 
@@ -53,7 +53,7 @@ public class V0BuildResponseItemModel: APIModel {
 
     public var triggeredWorkflow: String?
 
-    public init(abortReason: String? = nil, branch: String? = nil, buildNumber: Int? = nil, commitHash: String? = nil, commitMessage: String? = nil, commitViewURL: String? = nil, environmentPrepareFinishedAt: String? = nil, finishedAt: String? = nil, isOnHold: Bool? = nil, originalBuildParams: String? = nil, pullRequestId: Int? = nil, pullRequestTargetBranch: String? = nil, pullRequestViewURL: String? = nil, slug: String? = nil, stackConfigType: String? = nil, stackIdentifier: String? = nil, startedOnWorkerAt: String? = nil, status: Int? = nil, statusText: String? = nil, tag: String? = nil, triggeredAt: String? = nil, triggeredBy: String? = nil, triggeredWorkflow: String? = nil) {
+    public init(abortReason: String? = nil, branch: String? = nil, buildNumber: Int? = nil, commitHash: String? = nil, commitMessage: String? = nil, commitViewURL: String? = nil, environmentPrepareFinishedAt: String? = nil, finishedAt: String? = nil, isOnHold: Bool? = nil, originalBuildParams: [String : Any]? = nil, pullRequestId: Int? = nil, pullRequestTargetBranch: String? = nil, pullRequestViewURL: String? = nil, slug: String? = nil, stackConfigType: String? = nil, stackIdentifier: String? = nil, startedOnWorkerAt: String? = nil, status: Int? = nil, statusText: String? = nil, tag: String? = nil, triggeredAt: String? = nil, triggeredBy: String? = nil, triggeredWorkflow: String? = nil) {
         self.abortReason = abortReason
         self.branch = branch
         self.buildNumber = buildNumber
@@ -91,7 +91,7 @@ public class V0BuildResponseItemModel: APIModel {
         environmentPrepareFinishedAt = try container.decodeIfPresent("environment_prepare_finished_at")
         finishedAt = try container.decodeIfPresent("finished_at")
         isOnHold = try container.decodeIfPresent("is_on_hold")
-        originalBuildParams = try container.decodeIfPresent("original_build_params")
+        originalBuildParams = try container.decodeAnyIfPresent("original_build_params")
         pullRequestId = try container.decodeIfPresent("pull_request_id")
         pullRequestTargetBranch = try container.decodeIfPresent("pull_request_target_branch")
         pullRequestViewURL = try container.decodeIfPresent("pull_request_view_url")
@@ -119,7 +119,7 @@ public class V0BuildResponseItemModel: APIModel {
         try container.encodeIfPresent(environmentPrepareFinishedAt, forKey: "environment_prepare_finished_at")
         try container.encodeIfPresent(finishedAt, forKey: "finished_at")
         try container.encodeIfPresent(isOnHold, forKey: "is_on_hold")
-        try container.encodeIfPresent(originalBuildParams, forKey: "original_build_params")
+        try container.encodeAnyIfPresent(originalBuildParams, forKey: "original_build_params")
         try container.encodeIfPresent(pullRequestId, forKey: "pull_request_id")
         try container.encodeIfPresent(pullRequestTargetBranch, forKey: "pull_request_target_branch")
         try container.encodeIfPresent(pullRequestViewURL, forKey: "pull_request_view_url")
@@ -146,7 +146,7 @@ public class V0BuildResponseItemModel: APIModel {
       guard self.environmentPrepareFinishedAt == object.environmentPrepareFinishedAt else { return false }
       guard self.finishedAt == object.finishedAt else { return false }
       guard self.isOnHold == object.isOnHold else { return false }
-      guard self.originalBuildParams == object.originalBuildParams else { return false }
+      //guard self.originalBuildParams == object.originalBuildParams else { return false }
       guard self.pullRequestId == object.pullRequestId else { return false }
       guard self.pullRequestTargetBranch == object.pullRequestTargetBranch else { return false }
       guard self.pullRequestViewURL == object.pullRequestViewURL else { return false }

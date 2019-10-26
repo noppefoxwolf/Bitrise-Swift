@@ -5,4 +5,9 @@
 
 import Foundation
 
-public typealias V0AppConfigRespModel = [String: Any]
+public class V0AppConfigRespModel: APIModel {
+    public static func == (lhs: V0AppConfigRespModel, rhs: V0AppConfigRespModel) -> Bool {
+        return false
+    }
+}
+

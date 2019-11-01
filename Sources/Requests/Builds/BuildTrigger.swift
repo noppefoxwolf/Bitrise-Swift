@@ -57,6 +57,7 @@ extension API.Builds {
 
             /** OK */
             case status200(V0BuildTriggerRespModel)
+            case status201(V0BuildTriggerRespModel)
 
             /** Bad Request */
             case status400(ServiceStandardErrorRespModel)
@@ -73,6 +74,7 @@ extension API.Builds {
             public var success: V0BuildTriggerRespModel? {
                 switch self {
                 case .status200(let response): return response
+                case .status201(let response): return response
                 default: return nil
                 }
             }
@@ -101,6 +103,7 @@ extension API.Builds {
             public var response: Any {
                 switch self {
                 case .status200(let response): return response
+                case .status201(let response): return response
                 case .status400(let response): return response
                 case .status401(let response): return response
                 case .status404(let response): return response
@@ -111,6 +114,7 @@ extension API.Builds {
             public var statusCode: Int {
                 switch self {
                 case .status200: return 200
+                case .status201: return 200
                 case .status400: return 400
                 case .status401: return 401
                 case .status404: return 404
@@ -121,6 +125,7 @@ extension API.Builds {
             public var successful: Bool {
                 switch self {
                 case .status200: return true
+                case .status201: return true
                 case .status400: return false
                 case .status401: return false
                 case .status404: return false
@@ -131,6 +136,7 @@ extension API.Builds {
             public init(statusCode: Int, data: Data, decoder: ResponseDecoder) throws {
                 switch statusCode {
                 case 200: self = try .status200(decoder.decode(V0BuildTriggerRespModel.self, from: data))
+                case 201: self = try .status201(decoder.decode(V0BuildTriggerRespModel.self, from: data))
                 case 400: self = try .status400(decoder.decode(ServiceStandardErrorRespModel.self, from: data))
                 case 401: self = try .status401(decoder.decode(ServiceStandardErrorRespModel.self, from: data))
                 case 404: self = try .status404(decoder.decode(ServiceStandardErrorRespModel.self, from: data))

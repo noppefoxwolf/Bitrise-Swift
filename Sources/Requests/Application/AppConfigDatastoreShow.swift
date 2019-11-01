@@ -124,7 +124,7 @@ extension API.Application {
 
             public init(statusCode: Int, data: Data, decoder: ResponseDecoder) throws {
                 switch statusCode {
-                case 200: self = try .status200(decoder.decode(String.self, from: data))
+                case 200: self = try .status200(String(data: data, encoding: .utf8) ?? "")
                 case 400: self = try .status400(decoder.decode(ServiceStandardErrorRespModel.self, from: data))
                 case 401: self = try .status401(decoder.decode(ServiceStandardErrorRespModel.self, from: data))
                 case 404: self = try .status404(decoder.decode(ServiceStandardErrorRespModel.self, from: data))

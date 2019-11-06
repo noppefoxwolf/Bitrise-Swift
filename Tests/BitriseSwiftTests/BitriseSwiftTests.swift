@@ -3,10 +3,14 @@ import XCTest
 
 final class ANSIKitTests: XCTestCase {
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-//        XCTAssertEqual(ANSIKit.text, "Hello, World!")
+        let json = ##"{"original_build_params":{"hoge":null}}"##
+        let item = try! JSONDecoder().decode(V0BuildListAllResponseItemModel.self, from: json.data(using: .utf8)!)
+        
+        let json2 = try! JSONEncoder().encode(AnyCodable(item.originalBuildParams))
+        
+        print(String.init(data: json2, encoding: .utf8))
+//        let params = item.originalBuildParams as Any
+//        let data = try! JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
     }
 
     static var allTests = [

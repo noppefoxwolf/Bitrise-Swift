@@ -1,10 +1,10 @@
 import Foundation
 
-struct AnyCodable {
+public struct AnyCodable {
     let value: Any
 
-    init<T>(_ value: T?) {
-        self.value = value ?? ()
+    public init<T>(_ value: T?) {
+        self.value = value as Any
     }
 }
 

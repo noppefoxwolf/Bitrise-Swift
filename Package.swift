@@ -19,6 +19,9 @@ let package = Package(
     targets: [
         .target(name: "BitriseSwift", dependencies: [
           "Alamofire",
-        ], path: "Sources")
+        ], path: "Sources"),
+        .testTarget(
+            name: "BitriseSwiftTests",
+        dependencies: ["BitriseSwift"]),
     ]
 )
